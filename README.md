@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Art Gallery 🎨
 
-## Getting Started
+A dynamic showcase of AI-generated art and animated videos, powered by SDXL and Animagine-XL. This project demonstrates the fascinating possibilities of combining multiple AI models to create immersive visual and auditory experiences.
 
-First, run the development server:
+## 🌟 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### AI Image Generation
+- Powered by **Animagine-XL** (Hugging Face)
+- High-quality static image generation
+- Detailed prompt configuration showcase
+- Gallery of successful generations
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### AI Video Animation
+- Built with **Stable Diffusion XL (SDXL)**
+- Frame-by-frame generation with controllable parameters:
+  - Frame count and FPS control
+  - 3D Translation (X, Y, Z axis)
+  - 3D Rotation (X, Y, Z axis)
+  - Seed value management
+  - Motion interpolation settings
+- Video compilation from generated frames
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### AI Music Generation
+- Integrated **Meta MusicGen** model
+- Context-aware music generation based on video prompts
+- Seamless audio-visual synchronization
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 💻 Tech Stack
 
-## Learn More
+- **Frontend Framework**: Next.js
+- **AI Models**:
+  - SDXL for video frame generation
+  - Animagine-XL (Hugging Face) for static images
+  - Meta MusicGen for audio generation
+- **Video Processing**: Frame concatenation and music integration
 
-To learn more about Next.js, take a look at the following resources:
+## 🎬 How It Works
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Image Generation**
+   ```plaintext
+   User Prompt → Animagine-XL → Generated Image
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. **Video Creation Process**
+   ```plaintext
+   1. Configure Parameters (FPS, frames, motion settings)
+   2. Generate frames using SDXL
+   3. Apply motion transformations
+   4. Concatenate frames into video
+   5. Generate matching music using MusicGen
+   6. Combine video and audio
+   ```
 
-## Deploy on Vercel
+## 🔧 Technical Requirements
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Node.js >= 16.x
+- NPM >= 8.x
+- GPU recommended for faster generation
+- Sufficient storage for frame sequences
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🤝 Contributing
+
+While this is primarily a showcase project, you're welcome to:
+- Report bugs
+- Suggest improvements
+- Share your creations using these models
+
+## 📚 Resources
+
+- [SDXL Documentation](https://stability.ai/stable-diffusion)
+- [Animagine-XL on Hugging Face](https://huggingface.co/)
+- [Meta MusicGen Information](https://musicgen.com)
+- [Next.js Documentation](https://nextjs.org/docs)
+
+## 🔗 Connect
+
+- Portfolio: [Raghav Mangla](https://raghav04-portfolio.netlify.app/)
+- Twitter/X: [RaghavMangla7](https://x.com/RaghavMangla7)
+
+Created with Next.js 🚀 and AI 🤖
