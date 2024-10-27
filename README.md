@@ -75,6 +75,6 @@ While this is primarily a showcase project, you're welcome to:
 ## 🔗 Connect
 
 - Portfolio: [Raghav Mangla](https://raghav04-portfolio.netlify.app/)
-- Twitter/X: [@RaghavMangla7]
+- Twitter/X: [RaghavMangla7](https://x.com/RaghavMangla7)
 
 Created with Next.js 🚀 and AI 🤖
