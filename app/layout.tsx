@@ -4,6 +4,15 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/Navbar";
 import { Provider } from "@/components/Providers";
+import {
+  ClerkProvider,
+  SignIn,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton
+} from '@clerk/nextjs'
+import { dark,neobrutalism,shadesOfPurple } from '@clerk/themes'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,16 +27,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+      }}
+    >
     <html lang="en">
       <body className={cn(
         inter.className,
         "antialiased min-h-screen bg-gray-900 text-white"
       )}>
-        <Provider>
-          <Navbar />
+          <Provider>
+           <Navbar /> 
           {children}
-        </Provider>
+          </Provider>
+ 
       </body>
     </html>
+    </ClerkProvider>
   );
 }

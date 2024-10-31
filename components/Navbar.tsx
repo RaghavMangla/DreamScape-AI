@@ -1,20 +1,30 @@
-"use client"
+"use client";
 
-import { useState } from 'react'
-import Link from 'next/link'
-import { Menu, X, ChevronDown } from 'lucide-react'
-import { Button } from "@/components/ui/button"
-
-const NavItem = ({ href, children }: { href: string; children: React.ReactNode }) => (
+import { useState } from "react";
+import Link from "next/link";
+import { Menu, X, ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { UserButton } from "@clerk/nextjs";
+import {dark, neobrutalism, shadesOfPurple} from  "@clerk/themes"
+const NavItem = ({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) => (
   <li>
-    <Link href={href} className="text-gray-300 hover:text-white transition-colors">
+    <Link
+      href={href}
+      className="text-gray-300 hover:text-white transition-colors"
+    >
       {children}
     </Link>
   </li>
-)
+);
 
 export function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <nav className="bg-black bg-opacity-20 backdrop-filter backdrop-blur-lg text-white shadow-lg fixed w-full z-50">
@@ -22,7 +32,9 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0">
-              <span className="text-2xl font-bold text-purple-400">DreamScape AI</span>
+              <span className="text-2xl font-bold text-purple-400">
+                DreamScape AI
+              </span>
             </Link>
             <div className="hidden md:block ml-10">
               <ul className="flex space-x-4">
@@ -44,8 +56,12 @@ export function Navbar() {
             </div>
           </div>
           <div className="hidden md:block">
-            <Button variant="outline" className="mr-2 text-purple-400 border-purple-400 hover:bg-purple-400 hover:text-black">Log in</Button>
-            <Button className="bg-purple-500 text-white hover:bg-purple-600">Sign up</Button>
+            <UserButton
+              showName
+              appearance={{
+                baseTheme: dark,
+              }}
+            />
           </div>
           <div className="md:hidden">
             <button
@@ -75,12 +91,19 @@ export function Navbar() {
           </div>
           <div className="pt-4 pb-3 border-t border-gray-700">
             <div className="flex items-center px-5">
-              <Button variant="outline" className="mr-2 w-full text-purple-400 border-purple-400 hover:bg-purple-400 hover:text-black">Log in</Button>
-              <Button className="w-full bg-purple-500 text-white hover:bg-purple-600">Sign up</Button>
+              <Button
+                variant="outline"
+                className="mr-2 w-full text-purple-400 border-purple-400 hover:bg-purple-400 hover:text-black"
+              >
+                Log in
+              </Button>
+              <Button className="w-full bg-purple-500 text-white hover:bg-purple-600">
+                Sign up
+              </Button>
             </div>
           </div>
         </div>
       )}
     </nav>
-  )
+  );
 }

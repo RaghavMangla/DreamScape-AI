@@ -75,7 +75,7 @@ export default function GalleryPage() {
 
   return (
     <div className="min-h-screen bg-[#1a1b1e] text-gray-300 p-16">
-      <h1 className="text-4xl font-bold mb-8 text-center text-gray-200">
+      <h1 className="text-4xl font-extrabold bg-gradient-to-r from-purple-500 to-orange-500 bg-clip-text text-transparent mb-8 text-center text-gray-200">
         AI Generated Images
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
