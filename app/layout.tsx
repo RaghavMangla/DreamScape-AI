@@ -13,6 +13,7 @@ import {
   UserButton
 } from '@clerk/nextjs'
 import { dark,neobrutalism,shadesOfPurple } from '@clerk/themes'
+import SignInPage from "./sign-in/[[...sign-in]]/page";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,6 +38,9 @@ export default function RootLayout({
         inter.className,
         "antialiased min-h-screen bg-gray-900 text-white"
       )}>
+        <SignedOut>
+          <SignInPage/>
+        </SignedOut>
           <Provider>
            <Navbar /> 
           {children}
