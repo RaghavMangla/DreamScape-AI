@@ -1,73 +1,53 @@
-"use client";
+'use client'
 
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardFooter,
-} from "@/components/ui/card";
-import { Icons } from "@/components/ui/icons";
-import { lazy, Suspense, useState } from "react";
-import * as Clerk from "@clerk/elements/common";
-import * as SignIn from "@clerk/elements/sign-in";
-import { Canvas } from "@react-three/fiber";
-import {
-  Center,
-  OrbitControls,
-  Environment,
-  Text,
-  Float,
-} from "@react-three/drei";
-import CanvasLoader from "@/components/Loading";
-import DemoComputer from "@/components/DemoComputer";
-import { Eye, EyeOff } from "lucide-react";
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
+import { Icons } from "@/components/ui/icons"
+import { lazy, Suspense, useState } from "react"
+import * as Clerk from "@clerk/elements/common"
+import * as SignUp from "@clerk/elements/sign-up"
+import { Canvas } from '@react-three/fiber'
+import { Center, OrbitControls, Environment, Text, Float } from "@react-three/drei"
+import CanvasLoader from "@/components/Loading"
+import DemoComputer from "@/components/DemoComputer"
+import { Eye, EyeOff } from "lucide-react"
 
-export default function SignInPage() {
-  const [showPassword, setShowPassword] = useState<boolean>(false);
+export default function SignUpPage() {
+    const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
+    const togglePasswordVisibility = () => {
+      setShowPassword(!showPassword);
+    };
   return (
     <div className="relative flex min-h-screen overflow-hidden">
       {/* Background gradient with animated effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-900 animate-gradient-slow" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,0,255,0.1),rgba(0,0,0,0))]" />
-
+      
       {/* Floating particles effect */}
-      <div
-        className="absolute inset-0 bg-black/50"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 1%)",
-          backgroundSize: "3px 3px",
-        }}
-      />
+      <div className="absolute inset-0 bg-black/50" 
+           style={{
+             backgroundImage: 'radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 1%)',
+             backgroundSize: '3px 3px'
+           }} />
 
       {/* Main content */}
-      <div className="relative flex w-full">
-        {/* Sign in form section */}
-        <div className="w-full lg:w-[45%] flex items-center justify-center p-6 md:p-12">
-          <SignIn.Root>
+      <div className="m-6 relative flex w-full">
+        {/* Sign up form section */}
+        <div className="w-full lg:w-[45%] flex items-center justify-center md:p-12">
+          <SignUp.Root>
             <Clerk.Loading>
               {(isGlobalLoading) => (
                 <>
-                  <SignIn.Step name="start">
-                    <Card className="w-full max-w-md bg-black/30 border border-white/10 backdrop-blur-xl shadow-2xl rounded-2xl">
+                  <SignUp.Step name="start">
+                    <Card className="px-12 w-full max-w-md bg-black/30 border border-white/10 backdrop-blur-xl shadow-2xl rounded-2xl">
                       <CardHeader className="space-y-4 px-8 pt-8">
                         <CardTitle className="text-4xl font-bold text-center bg-gradient-to-r from-purple-400 via-fuchsia-300 to-pink-400 bg-clip-text text-transparent">
-                          Welcome Back
+                          Create Account
                         </CardTitle>
-                        <CardDescription className="text-gray-300 text-center text-base">
-                          Sign in to continue your creative journey
-                        </CardDescription>
                       </CardHeader>
                       <CardContent className="space-y-8 px-8 pt-4">
                         <div className="space-y-4">
@@ -82,8 +62,8 @@ export default function SignInPage() {
                                     <Icons.spinner className="size-4 animate-spin" />
                                   ) : (
                                     <div className="flex gap-3 items-center justify-center">
-                                      <Clerk.Icon />
-                                      Continue with Google
+                                      <Clerk.Icon/>
+                                      Sign up with Google
                                     </div>
                                   )
                                 }
@@ -99,42 +79,36 @@ export default function SignInPage() {
                           </div>
                           <div className="relative flex justify-center text-sm">
                             <span className="px-4 bg-black/30 text-gray-400">
-                              Or continue with email
+                              Or sign up with email
                             </span>
                           </div>
                         </div>
 
-                        <Clerk.Field name="identifier" className="space-y-2">
-                          <Clerk.Label asChild>
-                            <Label className="text-gray-200 text-sm font-medium pl-1">
+                   
+
+                        <Clerk.Field name="emailAddress" className="space-y-2">
+                          <Clerk.Label className="text-gray-200 text-sm font-medium pl-1">
                               Email Address
-                            </Label>
                           </Clerk.Label>
                           <Clerk.Input type="email" required asChild>
-                              <Input
-                                type="email"
-                                required
-                                className="py-5 bg-white/5 border-white/10 rounded-xl placeholder-gray-500 text-white focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all duration-300"
-                                placeholder="name@example.com"
-                              />
+                            <Input 
+                              className="py-5 bg-white/5 border-white/10 rounded-xl placeholder-gray-500 text-white focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all duration-300" 
+                              placeholder="name@example.com"
+                            />
                           </Clerk.Input>
                           <Clerk.FieldError className="text-sm text-red-400 pl-1" />
                         </Clerk.Field>
+
                         <Clerk.Field name="password" className="space-y-2">
-                          <Clerk.Label asChild>
-                            <Label className="text-gray-200 text-sm font-medium pl-1">
+                          <Clerk.Label asChild className="text-gray-200 text-sm font-medium pl-1">
                               Password
-                            </Label>
                           </Clerk.Label>
-                          <Clerk.Input type={showPassword ? "text" : "password"} required asChild>
-                            <div className="relative">
-                            <Input
-                              type={showPassword ? "text" : "password"}
-                              required
-                              className="py-5 bg-white/5 border-white/10 rounded-xl placeholder-gray-500 text-white focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all duration-300"
-                              placeholder="••••••••"
-                            />
-                            <Button
+                          <Clerk.Input  type={showPassword ? "text" : "password"} required asChild>
+                          <div className="relative">
+                          <Input type={showPassword ? "text" : "password"} required 
+                              className="py-5 bg-white/5 border-white/10 rounded-xl placeholder-gray-500 text-white focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all duration-300" 
+                              placeholder="••••••••"/>
+                              <Button
                                 type="button"
                                 variant="ghost"
                                 size="icon"
@@ -152,61 +126,96 @@ export default function SignInPage() {
                                   <Eye className="h-4 w-4 text-gray-500" />
                                 )}
                               </Button>
-                            </div>
-                          </Clerk.Input>
+                              </div>
+                            </Clerk.Input> 
                          
-
                           <Clerk.FieldError className="text-sm text-red-400 pl-1" />
                         </Clerk.Field>
+        
                         <div className="grid w-full gap-y-2">
-                          <SignIn.Action submit asChild>
-                            <Button
-                              className="w-full py-6 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-purple-500/20 hover:from-purple-500 hover:to-pink-500 focus:ring-4 focus:ring-purple-500/30 active:scale-[0.98]"
+                        <SignUp.Captcha className="empty:hidden" />
+                          <SignUp.Action submit asChild>
+                            <Button 
+                              className="w-full py-6 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-purple-500/20 hover:from-purple-500 hover:to-pink-500 focus:ring-4 focus:ring-purple-500/30 active:scale-[0.98]" 
                               disabled={isGlobalLoading}
                             >
                               <Clerk.Loading>
-                                {(isLoading) =>
+                                {(isLoading) => 
                                   isLoading ? (
                                     <Icons.spinner className="size-4 animate-spin" />
                                   ) : (
-                                    "Continue"
+                                    'Continue'
                                   )
                                 }
                               </Clerk.Loading>
                             </Button>
-                          </SignIn.Action>
-                          <Button
-                            variant="link"
-                            size="sm"
-                            className="w-full"
-                            asChild
-                          >
-                            <Link href="/sign-up">
-                              Don&apos;t have an account? Sign up
-                            </Link>
+                          </SignUp.Action>
+                          <Button variant="link" size="sm" className="w-full" asChild>
+                            <Link href="/sign-in">Already have an account? Sign in</Link>
                           </Button>
                         </div>
-                      </CardContent>
+                        </CardContent>
                     </Card>
-                  </SignIn.Step>
+                  </SignUp.Step>
 
-                  <SignIn.Step name="verifications">
-                    <SignIn.Strategy name="email_code">
+                  <SignUp.Step name="continue">
+                    <Card className="w-full max-w-md bg-black/30 border border-white/10 backdrop-blur-xl shadow-2xl rounded-2xl">
+                      <CardHeader className="space-y-4 px-8 pt-8">
+                        <CardTitle className="text-3xl font-bold text-center bg-gradient-to-r from-purple-400 via-fuchsia-300 to-pink-400 bg-clip-text text-transparent">
+                          Complete Your Profile
+                        </CardTitle>
+                        <CardDescription className="text-gray-300 text-center">
+                          Please fill in any missing information
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent className="space-y-6 px-8 pt-4">
+                        <Clerk.Field name="username" className="space-y-2">
+                          <Clerk.Label asChild>
+                            <Label className="text-gray-200 text-sm font-medium pl-1">
+                              Username
+                            </Label>
+                          </Clerk.Label>
+                          <Clerk.Input type="text" required asChild>
+                          <Input className="py-5 bg-white/5 border-white/10 rounded-xl placeholder-gray-500 text-white focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all duration-300" 
+                              placeholder="johndoe"/>
+                              </Clerk.Input>
+                          <Clerk.FieldError className="text-sm text-red-400 pl-1" />
+                        </Clerk.Field>
+                      </CardContent>
+                      <CardFooter className="px-8 pb-8">
+                        <SignUp.Action submit asChild>
+                          <Button
+                            className="w-full py-6 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-purple-500/20 hover:from-purple-500 hover:to-pink-500 focus:ring-4 focus:ring-purple-500/30 active:scale-[0.98]"
+                            disabled={isGlobalLoading}
+                          >
+                            <Clerk.Loading>
+                              {(isLoading) =>
+                                isLoading ? (
+                                  <Icons.spinner className="size-4 animate-spin" />
+                                ) : (
+                                  'Continue'
+                                )
+                              }
+                            </Clerk.Loading>
+                          </Button>
+                        </SignUp.Action>
+                      </CardFooter>
+                    </Card>
+                  </SignUp.Step>
+
+                  <SignUp.Step name="verifications">
                       <Card className="w-full max-w-md bg-black/30 border border-white/10 backdrop-blur-xl shadow-2xl rounded-2xl">
                         <CardHeader className="space-y-4 px-8 pt-8">
                           <CardTitle className="text-3xl font-bold text-center bg-gradient-to-r from-purple-400 via-fuchsia-300 to-pink-400 bg-clip-text text-transparent">
                             Check Your Email
                           </CardTitle>
                           <CardDescription className="text-gray-300 text-center">
-                            We've sent a verification code to{" "}
-                            <SignIn.SafeIdentifier />
+                          Use the verification link sent to your email address
                           </CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-6 px-8 pt-4">
                           <Clerk.Field name="code">
-                            <Clerk.Label className="sr-only">
-                              Verification code
-                            </Clerk.Label>
+                            <Clerk.Label className="sr-only">Email address</Clerk.Label>
                             <div className="grid gap-y-4">
                               <div className="flex justify-center gap-2">
                                 <Clerk.Input
@@ -224,35 +233,26 @@ export default function SignInPage() {
                                 />
                               </div>
                               <Clerk.FieldError className="text-sm text-red-400 text-center" />
-
-                              <SignIn.Action
+                              <SignUp.Action
                                 asChild
                                 resend
                                 className="text-gray-400"
                                 fallback={({ resendableAfter }) => (
-                                  <Button
-                                    variant="link"
-                                    size="sm"
-                                    className="w-full text-gray-400"
-                                    disabled
-                                  >
+                                  <Button variant="link" size="sm" className="w-full text-gray-400" disabled>
                                     Didn&apos;t receive a code? Resend (
-                                    <span className="tabular-nums">
-                                      {resendableAfter}
-                                    </span>
-                                    )
+                                    <span className="tabular-nums">{resendableAfter}</span>)
                                   </Button>
                                 )}
                               >
                                 <Button variant="link" size="sm">
                                   Didn&apos;t receive a code? Resend
                                 </Button>
-                              </SignIn.Action>
+                              </SignUp.Action>
                             </div>
                           </Clerk.Field>
                         </CardContent>
                         <CardFooter className="px-8 pb-8">
-                          <SignIn.Action submit asChild>
+                          <SignUp.Action submit asChild>
                             <Button
                               className="w-full py-6 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-purple-500/20 hover:from-purple-500 hover:to-pink-500 focus:ring-4 focus:ring-purple-500/30 active:scale-[0.98]"
                               disabled={isGlobalLoading}
@@ -262,51 +262,51 @@ export default function SignInPage() {
                                   isLoading ? (
                                     <Icons.spinner className="size-4 animate-spin" />
                                   ) : (
-                                    "Continue"
+                                    'Verify'
                                   )
                                 }
                               </Clerk.Loading>
+                            
                             </Button>
-                          </SignIn.Action>
+                          </SignUp.Action>
                         </CardFooter>
                       </Card>
-                    </SignIn.Strategy>
-                  </SignIn.Step>
+                  </SignUp.Step>
                 </>
               )}
             </Clerk.Loading>
-          </SignIn.Root>
+          </SignUp.Root>
         </div>
 
         {/* 3D Scene section */}
         <div className="hidden lg:block lg:w-[55%] h-screen">
-          <Canvas
-            className="touch-none"
-            camera={{ position: [0, 0, 20], fov: 45 }}
-          >
-            <ambientLight intensity={Math.PI / 2} />
-            <directionalLight position={[10, 10, 5]} />
-            <fog attach="fog" args={["#050510", 30, 40]} />
+          <Canvas className="touch-none" camera={{ position: [0, 0, 20], fov: 45 }}>
+            <ambientLight intensity={Math.PI/2}/>
+            <directionalLight position={[10,10,5]}/>
+            <fog attach="fog" args={['#050510', 30, 40]} />
             <Environment preset="city" />
-
+            
             <Suspense fallback={<CanvasLoader />}>
-              <Float speed={2} rotationIntensity={0.6} floatIntensity={0.6}>
+              <Float
+                speed={2}
+                rotationIntensity={0.6}
+                floatIntensity={0.6}
+              >
                 <Center>
-                  <group
-                    scale={3.5}
-                    position={[0, -2, 0]}
-                    rotation={[Math.PI / 16, -Math.PI / 8, 0]}
-                  >
+                  <group scale={3.5} position={[0, -2, 0]} rotation={[Math.PI / 16, -Math.PI / 8, 0]}>
                     <DemoComputer />
                   </group>
                 </Center>
               </Float>
             </Suspense>
-
-            <OrbitControls enableZoom={false} maxPolarAngle={Math.PI / 2} />
+            
+            <OrbitControls
+              enableZoom={false}
+              maxPolarAngle={Math.PI / 2}
+            />
           </Canvas>
         </div>
       </div>
     </div>
-  );
+  )
 }
