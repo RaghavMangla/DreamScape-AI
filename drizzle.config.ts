@@ -1,7 +1,7 @@
 import { config } from 'dotenv';
 import { defineConfig } from "drizzle-kit";
 
-config({ path: '.env' });
+config({ path: '.env.local' });
 
 if (!process.env.NEXT_PUBLIC_DRIZZLE_DATABASE_URL) {
   throw new Error("DATABASE_URL is not set in the environment variables");

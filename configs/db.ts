@@ -1,8 +1,15 @@
 import { drizzle } from "drizzle-orm/neon-http";
-import { neon } from "@neondatabase/serverless";
+import { neon, neonConfig } from "@neondatabase/serverless";
 import { config } from "dotenv";
 
-config({ path: ".env" }); // or .env.local
+config({ path: ".env.local" });
 
-const sql = neon(process.env.NEXT_PUBLIC_DRIZZLE_DATABASE_URL!);
-export const db = drizzle({ client: sql });
+// Enable fetch connection caching
+neonConfig.fetchConnectionCache = true;
+
+if (!process.env.NEXT_PUBLIC_DRIZZLE_DATABASE_URL) {
+  throw new Error("Database connection string not found");
+}
+
+const sql = neon(process.env.NEXT_PUBLIC_DRIZZLE_DATABASE_URL);
+export const db = drizzle(sql);

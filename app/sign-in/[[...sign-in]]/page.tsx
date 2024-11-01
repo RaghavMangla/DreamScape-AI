@@ -27,6 +27,9 @@ import {
 import CanvasLoader from "@/components/Loading";
 import DemoComputer from "@/components/DemoComputer";
 import { Eye, EyeOff } from "lucide-react";
+import { Boxes } from "@/components/ui/background-boxes";
+
+
 
 export default function SignInPage() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -37,30 +40,46 @@ export default function SignInPage() {
 
   return (
     <div className="relative flex min-h-screen overflow-hidden">
-      {/* Background gradient with animated effect */}
+      {/* Background layers, ordered from back to front */}
+      
+      {/* Base gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-900 animate-gradient-slow" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,0,255,0.1),rgba(0,0,0,0))]" />
+      
+      {/* Boxes with reduced opacity and blur */}
+      <div className="absolute inset-0 w-full h-full opacity-50">
+        <div className="absolute inset-0 backdrop-blur-[100px]">
+          <Boxes />
+        </div>
+      </div>
 
-      {/* Floating particles effect */}
+      {/* Subtle radial gradient overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,0,255,0.05),rgba(0,0,0,0))]" />
+      
+      {/* Noise texture overlay */}
       <div
-        className="absolute inset-0 bg-black/50"
+        className="absolute inset-0 bg-black/30"
         style={{
           backgroundImage:
-            "radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 1%)",
+            "radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, transparent 1%)",
           backgroundSize: "3px 3px",
         }}
       />
 
-      {/* Main content */}
+      {/* Gradient mask for additional depth */}
+      <div className="absolute inset-0 w-full h-full bg-transparent [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
+
+
+
+   
       <div className="relative flex w-full">
-        {/* Sign in form section */}
+
         <div className="w-full lg:w-[45%] flex items-center justify-center p-6 md:p-12">
           <SignIn.Root>
             <Clerk.Loading>
               {(isGlobalLoading) => (
                 <>
                   <SignIn.Step name="start">
-                    <Card className="w-full max-w-md bg-black/30 border border-white/10 backdrop-blur-xl shadow-2xl rounded-2xl">
+                    <Card className="z-20 w-full max-w-md bg-black/30 border border-white/10 backdrop-blur-xl shadow-2xl rounded-2xl">
                       <CardHeader className="space-y-4 px-8 pt-8">
                         <CardTitle className="text-4xl font-bold text-center bg-gradient-to-r from-purple-400 via-fuchsia-300 to-pink-400 bg-clip-text text-transparent">
                           Welcome Back
@@ -278,7 +297,7 @@ export default function SignInPage() {
           </SignIn.Root>
         </div>
 
-        {/* 3D Scene section */}
+ 
         <div className="hidden lg:block lg:w-[55%] h-screen">
           <Canvas
             className="touch-none"
